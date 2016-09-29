@@ -22,8 +22,10 @@ class Cache{
           int readMisses();
           int readHits();
 
-          void reemplazarBloque(int, int, ); // Recibe 
+          void reemplazarBloque(int, int, unsigned long, bool); // Recibe las coordenadas del bloque a reemplazar, escribe el tag nuevo y deja el valid en 1
 
+          void writeValid(int, int, bool); // Recibe las coordenadas del bloque a escribir el valid bitIndex
+          bool readValid(int, int); // Lee el valid bit de un bloque en las coordenadas x,y 
 
 
   private: // variables del cache
