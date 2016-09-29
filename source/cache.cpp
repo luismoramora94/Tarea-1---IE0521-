@@ -13,27 +13,21 @@ Cache::Cache(){
   asociatividad = 1;
   sizeCache = 64;
   sizeBloque = 32;
-  string DatosCache = "hola";
 
 };
 
 Cache::Cache(int n, int m, int k):asociatividad(n),sizeCache(m),sizeBloque(k){
-    byteOffset = log2(k);
-    NSets = sizeCache/(sizeBloque*asociatividad);
-    bitIndex = log2(NSets);
+    if(k%2 == 0){
+      if((sizeCache/(sizeBloque*asociatividad))%2 == 0 || (sizeCache/(sizeBloque*asociatividad)) == 1){
+
+        byteOffset = log2(k);
+        NSets = sizeCache/(sizeBloque*asociatividad);
+        bitIndex = log2(NSets);
+        bitsTag = 32 - bitIndex - byteOffset;
+    }
+  } else {std::cerr << "Parámetros inválidos" << std::endl;}
 };
 
 
 Cache::~Cache(){
 };
-
-int main(){
-  Cache c1();
-//  std::cout <<c1.DatosCache<< std::endl;
-};
-
-// void Cache::buscar();
-//void Cache::push();
-//void Cache::pop();
-//void Cache::sacarbloque();
-//void Cache::meterbloque();

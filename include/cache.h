@@ -1,3 +1,4 @@
+#include "Bloque.h"
 #include <cstring>
 #include <vector>
 #ifndef CACHE_H
@@ -15,22 +16,36 @@ class Cache{
 
           virtual ~Cache(); // Destructor por defecto vacio
 
-          //virtual void buscar();
-          //virtual void push();
-          //virtual void pop();
-          //virtual void sacarbloque();
-          //virtual void meterbloque();
+          void writeTag(int, int, unsigned long); // escribe el tag en la posicion x,y
+          unsigned long readTag(int, int);  // lee el tag en la posicion x,y
+
+          int readMisses();
+          int readHits();
+
+          void reemplazarBloque(int, int, ); // Recibe 
+
+
 
   private: // variables del cache
 
-  vector<vector<Bloque>> cache;
+  std::vector<std::vector<Bloque>> cache; // Cache formada por una matriz de objetos tipo bloque
 
-  int asociatividad;
+  int asociatividad; // Datos de la estructura del cache
   int sizeCache;
   int sizeBloque;
-  int byteOffset;
   int NSets;
+
+
+  int byteOffset; // Datos sobre las direcciones
   int bitIndex;
+  int bitsTag;
+
+  int misses; // Variables ontadores de hits y misses
+  int hits;
+
+
+
+
 
 };
 
