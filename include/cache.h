@@ -4,28 +4,77 @@
 #ifndef CACHE_H
 #define CACHE_H
 
-
+/**
+ * Clase que representa una memoria cache hecha de diferentes objetos tipo Bloque de memoria
+ */
 class Cache{
 
   public:
-
-          Cache(); // Constructor por defecto - Crea una cache de mapeo directo, de 64 KB y tamaño de bloque de 32 B
-          Cache(int, int, int); /* n es el grado de asociatividad:       1 - mapeo directo
+            /**
+            * Constructor por defecto - crea un cache de mapeo directo, de tamaño de 64 kB y bloques de tamaño de 32 B
+            */
+          Cache();
+          /**
+          * Constructor:      n es el grado de asociatividad del cache:  1 - mapeo directo
                                                                          2 - 2 set way associative
-                                                                         3 - 4 set way associative*/
+                                                                         3 - 4 set way associative
 
-          virtual ~Cache(); // Destructor por defecto vacio
+                              m es el el tamaño del cache en kB y k es el tamaño del bloque
+                                                                         */
+          Cache(int, int, int);
 
-          void writeTag(int, int, unsigned long); // escribe el tag en la posicion x,y
-          unsigned long readTag(int, int);  // lee el tag en la posicion x,y
+          virtual ~Cache();
+
+          /**
+          * Metodo para escribir un tag en un bloque específico del cache
+          * @param  x el numero de set
+          * @param  y el numero de columna
+          * @param  newtag el tag a escribir
+          */
+          void writeTag(int, int, unsigned long);
+          /**
+          * Metodo para leer el tag en un bloque específico del cache
+          * @param  x el numero de set
+          * @param  y el numero de columna
+          * @return  el tag del bloque
+          */
+          unsigned long readTag(int, int);
+          /**
+          * Metodo para buscar un tag en el cache
+          * @param  el tag a buscar
+          */
           void buscarTag(unsigned long);
-
+          /**
+          * Metodo para leer cuantos misses lleva el cache
+          * @return  el numero de misses
+          */
           int readMisses();
+          /**
+          * Metodo para leer cuantos hits lleva el cache
+          * @return  el numero de hits
+          */
           int readHits();
 
-          void reemplazarBloque(int, int, unsigned long); // Recibe las coordenadas del bloque a reemplazar, escribe el tag nuevo y deja el valid en 1
-
-          void writeValid(int, int, bool); // Recibe las coordenadas del bloque a escribir el valid bitIndex
+          /**
+          * Metodo para reemplazar un bloque del cache, dejando el valid bit en 1
+          * @param x el numero set
+          * @param y el numero de columna
+          * @param newtag el tag a reemplazar
+          */
+          void reemplazarBloque(int, int, unsigned long);
+          /**
+          * Metodo para escribir sobre el valid bit de un bloque del cache
+          * @param x el numero set
+          * @param y el numero de columna
+          * @param newtag el tag a reemplazar
+          */
+          void writeValid(int, int, bool);
+          /**
+          * Metodo para leer el valid bit de un bloque del cache
+          * @param x el numero set
+          * @param y el numero de columna
+          * @return el valid bit del bloque
+          */
           bool readValid(int, int); // Lee el valid bit de un bloque en las coordenadas x,y
 
 
@@ -43,12 +92,8 @@ class Cache{
   int bitIndex;
   int bitsTag;
 
-  int misses; // Variables ontadores de hits y misses
+  int misses; // Variables contadoras de hits y misses
   int hits;
-
-
-
-
 
 };
 

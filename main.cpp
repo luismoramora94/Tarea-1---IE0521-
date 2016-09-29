@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
 	//}
 
   // Cache C1(parametros[0], parametros[1], parametros[2]);//  1, 32, 64
-Cache C1(1, 32, 64);
+Cache C1(1, 32, 64*1024);
   // ifstream file("prueba.trace");
 
 
