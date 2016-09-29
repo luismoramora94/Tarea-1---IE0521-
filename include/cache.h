@@ -18,7 +18,7 @@ class Cache{
 
           void writeTag(int, int, unsigned long); // escribe el tag en la posicion x,y
           unsigned long readTag(int, int);  // lee el tag en la posicion x,y
-          void buscarTag(int, int, unsigned long);
+          void buscarTag(unsigned long);
 
           int readMisses();
           int readHits();

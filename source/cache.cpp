@@ -57,20 +57,24 @@ void Cache::writeTag(int x, int y, unsigned long newtag){
             cache[x][y].writeTag(newtag);
 };
 
-void Cache::buscarTag(int x, int y, unsigned long newtag){
+void Cache::buscarTag(unsigned long newtag){
 
           bool hit = false;
+          int randx; randx = rand();
+          int randy; randy = randx%asociatividad;
 
-          if(cache[x][y].readValid() == true && newtag == cache[x][y].readTag()){
-             hit = true;
-             hits++;
-             return;
+          for(int i = 0; i<NSets; i++){
+            for(int j = 0; j<asociatividad; j++){
+                        if(cache[i][j].readValid() == true && newtag == cache[i][j].readTag()){
+                            hit = true;
+                            hits++;
+                            return;
+            }
+          }
 
-          }else{
 
-                int randx; randx = rand();
-
-                reemplazarBloque(randx,y,newtag);
+        }if(hit == false){
+                reemplazarBloque(randx,randy,newtag);
                 misses++;
               }
 
@@ -97,8 +101,3 @@ void Cache::reemplazarBloque(int x, int y, unsigned long newtag){
         writeTag(x,y,newtag);
         cache[x][y].writeValid(true);
 }
-
-
-
-
-int main(){};
