@@ -53,8 +53,27 @@ Cache::Cache(int n, int m, int k):asociatividad(n),sizeCache(m),sizeBloque(k){
 
 Cache::~Cache(){};
 
-void Cache::writeTag(int x, int y, unsigned long tag){
-          cache[x][y].writeTag(tag);
+void Cache::writeTag(int x, int y, unsigned long newtag){
+            cache[x][y].writeTag(newtag);
+};
+
+void Cache::buscarTag(int x, int y, unsigned long newtag){
+
+          bool hit = false;
+
+          if(cache[x][y].readValid() == true && newtag == cache[x][y].readTag()){
+             hit = true;
+             hits++;
+             return;
+
+          }else{
+
+                int randx; randx = rand();
+
+                reemplazarBloque(randx,y,newtag);
+                misses++;
+              }
+
 };
 
 unsigned long Cache::readTag(int x, int y){
@@ -75,7 +94,8 @@ bool Cache::readValid(int x, int y){
 
 
 void Cache::reemplazarBloque(int x, int y, unsigned long newtag){
-        
+        writeTag(x,y,newtag);
+        cache[x][y].writeValid(true);
 }
 
 
