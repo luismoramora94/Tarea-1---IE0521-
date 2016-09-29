@@ -8,7 +8,7 @@ class Bloque{
 
           Bloque(); // Constructor por defecto - Crea un bloque de tamaño uno, tag 1 y valid false.
 
-          Bloque(int, unsigned long, bool); /* Constructor - recibe un entero para el tamaño del bloque, un UL para el tag y un bool para el valid bit*/
+          Bloque(int); /* Constructor - recibe un entero para el tamaño del bloque*/
 
           virtual ~Bloque(); // Destructor por defecto vacio
 

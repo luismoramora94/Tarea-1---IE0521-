@@ -16,14 +16,14 @@ Bloque::Bloque(){
 
 };
 
-Bloque::Bloque(int size, unsigned long T, bool vb):sizeBloque(size),tag(T),valid(vb){
+Bloque::Bloque(int size):sizeBloque(size){
 
 };
 
 Bloque::~Bloque(){
 };
 
-void Bloque::writeTag(unsigned long tag){
+void Bloque::writeTag(unsigned long T){
     this->tag = tag;
 };
 
