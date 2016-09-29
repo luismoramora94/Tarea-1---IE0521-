@@ -9,18 +9,22 @@ using namespace std;
 
 Cache::Cache(){
 
+  byteOffset = log2(sizeBloque);
+  NSets = sizeCache/(sizeBloque*asociatividad);
+  bitIndex = log2(NSets);
+  bitsTag = 32 - bitIndex - byteOffset;
+
   asociatividad = 1;
   sizeCache = 64;
   sizeBloque = 32;
-  NSets = 1;
-
-  byteOffset = 1;
-  bitIndex = 1;
-  bitsTag = 1;
 
   misses = 0;
   hits = 0;
 
+  std::vector<Bloque> columnas(NSets,Bloque(sizeBloque));
+  std::vector<std::vector<Bloque>> arrayColumnas(asociatividad,columnas);
+
+  cache = arrayColumnas;
 };
 
 Cache::Cache(int n, int m, int k):asociatividad(n),sizeCache(m),sizeBloque(k){
@@ -41,12 +45,12 @@ Cache::Cache(int n, int m, int k):asociatividad(n),sizeCache(m),sizeBloque(k){
         cache = arrayColumnas;
 
 
-        for(int i = 0; i<asociatividad; i++){
-                    for(int j = 0; j<NSets; j++){
-                                                  cache[i][j].writeTag(0);
-            }
+      //  for(int i = 0; i<NSets; i++){
+      //              for(int j = 0; j<asociatividad; j++){
+      //                                            cache[i][j].writeTag(0);
+      //      }
 
-        }
+      //  }
     }
   } else {std::cerr << "Parámetros inválidos" << std::endl;}
 };
