@@ -80,7 +80,7 @@ class Cache{
 
   private: // variables del cache
 
-  std::vector<std::vector<Bloque>> cache; // Cache formada por una matriz de objetos tipo bloque
+  std::vector<std::vector<Bloque> > cache; // Cache formada por una matriz de objetos tipo bloque
 
   int asociatividad; // Datos de la estructura del cache
   int sizeCache;

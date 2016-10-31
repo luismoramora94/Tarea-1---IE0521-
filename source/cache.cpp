@@ -22,7 +22,7 @@ Cache::Cache(){
   hits = 0;
 
   std::vector<Bloque> columnas(NSets,Bloque(sizeBloque));
-  std::vector<std::vector<Bloque>> arrayColumnas(asociatividad,columnas);
+  std::vector<std::vector<Bloque> > arrayColumnas(asociatividad,columnas);
 
   cache = arrayColumnas;
 };
@@ -40,7 +40,7 @@ Cache::Cache(int n, int m, int k):asociatividad(n),sizeCache(m),sizeBloque(k){
         hits = 0;
 
         std::vector<Bloque> columnas(NSets,Bloque(sizeBloque));
-        std::vector<std::vector<Bloque>> arrayColumnas(asociatividad,columnas);
+        std::vector<std::vector<Bloque> > arrayColumnas(asociatividad,columnas);
 
         cache = arrayColumnas;
 
