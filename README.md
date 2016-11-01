@@ -14,6 +14,6 @@ PROGRAMA PARA SIMULACIÓN DEL CACHE:
 
 	para ejecutar la simulación ejecute el comando
 
-	$ /tarea1.o <asociatividad> <tamaño del cache> <tamaño del bloque>
+	$ /tarea1.o [asociatividad] [tamaño del cache] [tamaño del bloque]
 
 	como salida se darán la cantidad de hits y misses
